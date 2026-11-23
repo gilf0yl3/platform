@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>30-Minute Vertical Session</title>
+<style>
+:root{--bg:#000;--card:#1C1C1E;--card2:#2C2C2E;--sep:#38383A;--blue:#0A84FF;--blue-dim:rgba(10,132,255,.14);--purple:#BF5AF2;--green:#30D158;--red:#FF453A;--t:#fff;--t2:#8E8E93;--t3:#636366}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+body{background:var(--bg);color:var(--t);font:15px/1.5 -apple-system,"SF Pro Text","Helvetica Neue",system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+.wrap{max-width:640px;margin:0 auto;padding:28px 16px 80px}
+h1{font-size:32px;font-weight:800;letter-spacing:-.6px;line-height:1.1}
+h2{font-size:20px;font-weight:700;letter-spacing:-.3px;margin:32px 0 12px}
+.sub{color:var(--t2);margin-top:8px}
+.card{background:var(--card);border-radius:16px;padding:16px;margin-bottom:10px}
+.now{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:20px}
+.now b{font-size:17px}.now span{color:var(--t2);font-size:13px;display:block}
+.pill{background:var(--blue-dim);color:var(--blue);font-weight:600;font-size:12px;padding:4px 10px;border-radius:20px;white-space:nowrap}
+.pill.on{background:var(--blue);color:#fff}
+.time{color:var(--t3);font-size:12px;font-weight:600;margin:18px 0 6px 4px}
+.ex-top{display:flex;justify-content:space-between;gap:10px;align-items:flex-start}
+.ex-name{font-weight:600;font-size:16px}
+.rx{color:var(--t2);font-size:13px;margin-top:4px}
+.load{color:var(--blue);font-size:13px;margin-top:2px;font-weight:500}
+details{margin-top:10px;border-top:.5px solid var(--sep);padding-top:10px}
+summary{color:var(--blue);font-size:14px;font-weight:600;cursor:pointer;list-style:none}
+summary::-webkit-details-marker{display:none}
+summary::after{content:" ▾"}
+details[open] summary::after{content:" ▴"}
+ol{margin:10px 0 0 20px;color:var(--t2);font-size:14px}
+li{margin-bottom:6px}
+.tip{background:var(--card2);border-radius:10px;padding:10px 12px;margin-top:10px;font-size:13px;color:var(--t2)}
+.tip b{color:var(--t)}
+.vid{display:inline-block;margin-top:10px;font-size:12px;font-weight:600;color:var(--blue);text-decoration:none;background:var(--blue-dim);padding:5px 10px;border-radius:8px}
+.prog .card b{display:block;margin-bottom:2px}
+.prog p,.note{color:var(--t2);font-size:14px}
+.grid{display:grid;grid-template-columns:repeat(13,1fr);gap:4px;margin:10px 0}
+.wk{aspect-ratio:1;border-radius:6px;background:var(--card2);color:var(--t3);font-size:10px;font-weight:600;border:0;cursor:pointer}
+.wk.done{background:var(--blue);color:#fff}
+.wk.cur{outline:2px solid var(--blue);outline-offset:1px}
+.row{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0}
+input,select{background:var(--card);border:0;border-radius:10px;color:var(--t);font:inherit;padding:11px 12px;outline:none;color-scheme:dark}
+input[type=date]{flex:1;min-width:130px}input[type=number]{width:90px}select{flex:1;min-width:120px}
+button.go{background:var(--blue);color:#fff;border:0;border-radius:10px;padding:11px 20px;font:600 15px inherit;font-family:inherit;cursor:pointer}
+button.ghost{background:none;border:0;color:var(--t3);font:inherit;font-size:13px;cursor:pointer;padding:11px 8px}
+button.ghost:hover{color:var(--red)}
+.log{display:flex;justify-content:space-between;align-items:center;background:var(--card);border-radius:10px;padding:10px 14px;margin-bottom:6px;font-size:14px}
+.log b{font-size:16px;font-variant-numeric:tabular-nums}
+.log button{background:none;border:0;color:var(--t3);font-size:18px;cursor:pointer}
+.empty{color:var(--t3);text-align:center;padding:20px;font-size:14px}
+svg{width:100%;display:block}
+.legend{display:flex;gap:14px;justify-content:center;font-size:12px;color:var(--t2);margin-top:8px}
+.legend i{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px}
+@media(max-width:480px){.grid{grid-template-columns:repeat(8,1fr)}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<h1>30-minute vertical session</h1>
+<p class="sub">One session a week, built to raise your jump and train your whole body. Basketball on Tuesday and Thursday covers the rest.</p>
+
+<div class="card now">
+  <div><b id="nowTitle">Week 1</b><span id="nowSub"></span></div>
+  <div class="pill on" id="nowPill">Heavy deadlift week</div>
+</div>
+
+<h2>The session</h2>
+<p class="note">Do it on Saturday after Friday’s rest. Tap “How to” on any exercise. The full session runs about 32 minutes. If you are short on time, cut the bench press first.</p>
+<div id="session"></div>
+
+<h2>How it progresses over a year</h2>
+<div class="prog">
+  <div class="card"><b>Months 1–3: build the base</b><p>Learn the lifts. Squat 3×5 at 85–90 kg. Drop landings only, no drop jumps yet.</p></div>
+  <div class="card"><b>Months 4–6: add reactive work</b><p>Switch to drop jumps from 30 cm. Squat 3×3–4 at 100–110 kg, still paused. Add 2.5 kg whenever every rep is clean.</p></div>
+  <div class="card"><b>Months 7–12: go heavier and faster</b><p>Drop jumps from 30–40 cm only if your rebound stays close to your normal jump. Squat toward 115–125 kg for sets of 3.</p></div>
+  <div class="card"><b>Every 4th week: deload</b><p>Same weights, half the sets. You adapt while you recover.</p></div>
+  <div class="card"><b>Free technique reps</b><p>Before basketball, do 5 slow walk-throughs of your last three approach steps: long second-to-last step, short final step, then up.</p></div>
+</div>
+
+<h2>Week tracker</h2>
+<p class="note">Tap a week once you finish its session. The pill at the top follows your progress.</p>
+<div class="grid" id="weeks"></div>
+
+<h2>Jump tracker</h2>
+<p class="note">Log a max jump every few weeks. Measure the same way each time, after your warm-up.</p>
+<div class="row">
+  <input type="date" id="d"><input type="number" id="h" placeholder="cm" min="0" max="200" step="0.5">
+  <select id="t"><option value="standing">Standing jump</option><option value="approach">Approach jump</option></select>
+</div>
+<div class="row"><button class="go" onclick="addJump()">Log jump</button><button class="ghost" onclick="resetAll()">Reset all data</button></div>
+<div class="card"><svg id="chart" viewBox="0 0 620 240"></svg>
+<div class="legend"><span><i style="background:#0A84FF"></i>Standing</span><span><i style="background:#BF5AF2"></i>Approach</span></div></div>
+<div id="jumps"></div>
+
+<h2>Rules</h2>
+<div class="card"><p class="note">Every jump is a max-effort jump. Stop a set when the bar or your jump gets slower. Rest fully between sets. Sleep 7–8 hours. Sharp knee or Achilles pain means no jumping for 3–4 days, then see a physio if it stays.</p></div>
+</div>
+
+<script>
+var yt=function(q){return 'https://www.youtube.com/results?search_query='+q};
+var EX=[
+{time:'0–3 min',n:'Warm-up',rx:'1 min jump rope or easy bike, then 10 bodyweight squats, 10 leg swings per leg, 5 light calf bounces',
+ st:['Raise your heart rate for 1 minute.','Squat to full depth with your chest tall.','Hold a rack and swing each leg front to back.','Finish with 5 small ankle bounces.'],
+ tip:'You should feel warm and springy, not tired.',q:'dynamic+warm+up+before+jumping'},
+{time:'3–10 min',n:'Box jump',tag:'Power',rx:'3 sets × 3 reps · rest 60–90 sec',load:'Box 50–60 cm / 20–24 in',
+ st:['Stand about 20 cm from the box, feet shoulder-width apart.','Swing your arms back, dip into a quarter squat, then explode up while swinging your arms overhead.','Land softly on the whole box with both feet and your knees bent.','Stand tall, then step down. Do not jump down.','Reset fully before every rep.'],
+ tip:'<b>Cue:</b> jump as high as you can, not as far. Pick a box you can land on comfortably. If you have to tuck hard to land, it is too high.',q:'box+jump+tutorial+step+down'},
+{n:'Broad jump',tag:'Power',rx:'2 sets × 3 reps · rest 60 sec',
+ st:['Stand with feet shoulder-width apart, toes behind a line.','Swing your arms back and load your hips.','Throw your arms forward and jump as far as possible.','Land on both feet in a quarter squat and hold 2 seconds.'],
+ tip:'<b>Cue:</b> drive your hips all the way through. A stumbling landing means you went too far, so shorten the jump.',q:'standing+broad+jump+technique'},
+{n:'Drop landing, then drop jump',tag:'Reactive',rx:'2 sets × 3 reps from 30 cm / 12 in · rest 90 sec',load:'Weeks 1–4: landings only. Week 5 on: drop jumps',
+ st:['Stand on a 30 cm box and step off. Do not jump off.','Weeks 1–4: land softly in a quarter squat on both feet and hold 2 seconds. No jump.','Week 5 on: the moment your feet touch, jump up as high as you can with the shortest possible ground contact.','Stay at 30 cm until your rebound jump is within 2–3 cm of your normal jump.'],
+ tip:'<b>Why:</b> basketball does not train fast ground contacts, so this fills the gap. Six contacts is enough.',q:'drop+landing+to+drop+jump+progression'},
+{time:'10–18 min',n:'Paused full-depth back squat, then 3 max jumps',tag:'Strength',rx:'3 sets × 5 reps (weeks 1–4), then 3 × 3–4 · after each set, rest 1 min, then jump 3 times',load:'Weeks 1–4: 85–90 kg / 190–200 lbs. After month 1: 100–110 kg / 220–245 lbs',
+ st:['Warm up with 2 lighter sets first. They do not count.','Set the bar on your upper back, feet shoulder-width, toes slightly out.','Lower under control until your hip crease is below your knee.','Pause 2 seconds at the bottom without relaxing.','Drive up hard. After the set, rest about a minute, then do 3 max-effort jumps with no weight.'],
+ tip:'<b>Why paused:</b> your current squat stops at about 100°. The pause builds strength at the bottom, where jumps start. Depth matters more than load.',q:'paused+back+squat+full+depth+tutorial'},
+{time:'18–23 min',n:'Trap bar deadlift',tag:'Strength',variant:'A',rx:'2 sets × 5 reps, heavy · rest 2 min',load:'Start around 60–80 kg / 135–175 lbs. Add 2.5–5 kg when 5 reps feel easy',
+ st:['Stand inside the bar with your feet hip-width apart.','Grip the handles, push your hips back, and keep your chest up.','Push the floor away until you are fully standing, with hips and knees locked.','Lower with control and reset before each rep.'],
+ tip:'<b>Cue:</b> stop with 2 reps left in the tank. A flat back matters more than weight.',q:'trap+bar+deadlift+tutorial'},
+{n:'Trap bar jump',tag:'Power',variant:'B',rx:'3 sets × 3 reps, light and fast · rest 90 sec',load:'30–40 kg / 65–90 lbs total bar weight',
+ st:['Set up like a deadlift with a very light load.','Push the floor away as fast as you can and leave the ground.','Land softly with bent knees and let the bar settle.','Reset fully before the next rep.'],
+ tip:'<b>Cue:</b> speed is the goal. If the jump gets slower, stop the set.',q:'trap+bar+jump+tutorial'},
+{time:'23–28 min',n:'Chin-up, then heavy standing calf raise',tag:'Whole body',rx:'2 rounds: chin-ups 5–8 reps, then calf raises 5 reps · rest 90 sec between rounds',load:'Calf raise: heavy, around 5 reps from failure. Smith machine or barbell',
+ st:['Chin-up: grip the bar palms toward you, pull your chin over it, and lower fully.','Calf raise: stand on a block with the bar on your shoulders, lower your heels for a full stretch.','Drive up as high as you can on your toes, hold 1 second, then lower slowly.'],
+ tip:'<b>Why calves:</b> calf strength relates to jump height more strongly than most people expect, and it is not trained by anything else here.',q:'heavy+standing+calf+raise+smith+machine'},
+{time:'28–32 min',n:'Bench press',tag:'Whole body',rx:'2 sets × 6–8 reps · rest 90 sec',load:'Moderate weight. Stop 2 reps before failure',
+ st:['Lie back with your eyes under the bar, feet flat on the floor.','Lower the bar to your mid-chest with your elbows at about 45°.','Press up until your arms are straight.'],
+ tip:'<b>Note:</b> this does not raise your jump. It is here for full-body balance, so cut it first when you are short on time.',q:'bench+press+form+tutorial'}
+];
+var S={weeks:Array(52).fill(false),jumps:[]};
+function load(){try{var r=localStorage.getItem('vj30');if(r)S=JSON.parse(r)}catch(e){}}
+function save(){try{localStorage.setItem('vj30',JSON.stringify(S))}catch(e){}}
+function cur(){var i=S.weeks.indexOf(false);return i<0?51:i}
+function renderSession(){
+  var wk=cur()+1,isA=wk%2===1,h='';
+  EX.forEach(function(e){
+    if(e.time)h+='<div class="time">'+e.time+'</div>';
+    var badge=e.variant?'<span class="pill'+((e.variant==='A')===isA?' on':'')+'">'+(e.variant==='A'?'Odd weeks':'Even weeks')+((e.variant==='A')===isA?' · this week':'')+'</span>':(e.tag?'<span class="pill">'+e.tag+'</span>':'');
+    h+='<div class="card"><div class="ex-top"><div class="ex-name">'+e.n+'</div>'+badge+'</div><div class="rx">'+e.rx+'</div>'+(e.load?'<div class="load">'+e.load+'</div>':'')+
+    '<details><summary>How to</summary><ol>'+e.st.map(function(s){return '<li>'+s+'</li>'}).join('')+'</ol><div class="tip">'+e.tip+'</div><a class="vid" href="'+yt(e.q)+'" target="_blank" rel="noopener">▶ Watch a tutorial</a></details></div>';
+  });
+  document.getElementById('session').innerHTML=h;
+  var done=S.weeks.filter(Boolean).length,c=cur()+1;
+  document.getElementById('nowTitle').textContent='Week '+c+' of 52';
+  document.getElementById('nowSub').textContent=done+' weeks completed'+(c%4===0?' · deload week: half the sets':'');
+  document.getElementById('nowPill').textContent=isA?'Heavy deadlift week':'Trap bar jump week';
+}
+function renderWeeks(){
+  var c=cur();
+  document.getElementById('weeks').innerHTML=S.weeks.map(function(d,i){return '<button class="wk'+(d?' done':'')+(i===c&&!d?' cur':'')+'" onclick="toggleWeek('+i+')">'+(i+1)+'</button>'}).join('');
+}
+function toggleWeek(i){S.weeks[i]=!S.weeks[i];save();renderWeeks();renderSession()}
+function fmt(d){var p=d.split('-'),m=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];return m[+p[1]-1]+' '+(+p[2])}
+function addJump(){
+  var d=document.getElementById('d').value,h=parseFloat(document.getElementById('h').value),t=document.getElementById('t').value;
+  if(!d||isNaN(h)||h<=0)return;
+  S.jumps.push({id:Date.now(),d:d,h:h,t:t});S.jumps.sort(function(a,b){return a.d.localeCompare(b.d)});
+  document.getElementById('h').value='';save();renderJumps();
+}
+function delJump(id){S.jumps=S.jumps.filter(function(j){return j.id!==id});save();renderJumps()}
+function renderJumps(){
+  var el=document.getElementById('jumps');
+  el.innerHTML=S.jumps.length?S.jumps.slice().reverse().map(function(j){return '<div class="log"><span style="color:#8E8E93">'+fmt(j.d)+'</span><span class="pill">'+(j.t==='standing'?'Standing':'Approach')+'</span><b>'+j.h+' cm</b><button onclick="delJump('+j.id+')" aria-label="Delete">×</button></div>'}).join(''):'<div class="empty">No jumps logged yet. Add your first one above.</div>';
+  drawChart();
+}
+function drawChart(){
+  var svg=document.getElementById('chart'),J=S.jumps,W=620,H=240,L=44,R=16,T=18,B=30;
+  if(!J.length){svg.innerHTML='<text x="310" y="125" text-anchor="middle" fill="#636366" font-size="14">Log a jump to see your trend</text>';return}
+  var hs=J.map(function(j){return j.h}),lo=Math.floor((Math.min.apply(0,hs)-5)/5)*5,hi=Math.ceil((Math.max.apply(0,hs)+5)/5)*5;
+  var t0=new Date(J[0].d),span=Math.max((new Date(J[J.length-1].d)-t0)/864e5,1);
+  var x=function(d){return J.length===1?W/2:L+((new Date(d)-t0)/864e5/span)*(W-L-R)},y=function(v){return T+(H-T-B)*(1-(v-lo)/(hi-lo))};
+  var s='';
+  for(var i=0;i<=4;i++){var v=lo+(hi-lo)*i/4;s+='<line x1="'+L+'" x2="'+(W-R)+'" y1="'+y(v)+'" y2="'+y(v)+'" stroke="#38383A" stroke-width=".5"/><text x="'+(L-8)+'" y="'+(y(v)+4)+'" text-anchor="end" fill="#636366" font-size="10">'+Math.round(v)+'</text>'}
+  [['standing','#0A84FF'],['approach','#BF5AF2']].forEach(function(p){
+    var a=J.filter(function(j){return j.t===p[0]});if(!a.length)return;
+    if(a.length>1)s+='<path d="'+a.map(function(j,i){return (i?'L':'M')+x(j.d)+','+y(j.h)}).join(' ')+'" fill="none" stroke="'+p[1]+'" stroke-width="2.5" stroke-linejoin="round"/>';
+    a.forEach(function(j){s+='<circle cx="'+x(j.d)+'" cy="'+y(j.h)+'" r="5" fill="'+p[1]+'" stroke="#1C1C1E" stroke-width="2"/><text x="'+x(j.d)+'" y="'+(y(j.h)-10)+'" text-anchor="middle" fill="'+p[1]+'" font-size="11" font-weight="700">'+j.h+'</text>'});
+  });
+  s+='<text x="'+L+'" y="'+(H-8)+'" fill="#636366" font-size="10">'+fmt(J[0].d)+'</text>';
+  if(J.length>1)s+='<text x="'+(W-R)+'" y="'+(H-8)+'" text-anchor="end" fill="#636366" font-size="10">'+fmt(J[J.length-1].d)+'</text>';
+  svg.innerHTML=s;
+}
+function resetAll(){if(!confirm('Reset all tracking data? This cannot be undone.'))return;S={weeks:Array(52).fill(false),jumps:[]};save();init()}
+function init(){renderSession();renderWeeks();renderJumps();document.getElementById('d').value=new Date().toISOString().slice(0,10)}
+load();init();
+</script>
+</body>
+</html>
